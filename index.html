@@ -6,36 +6,41 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <style>
-     * {
-        margin: 0;
-        padding: 0;
-        border: none;
+        * {
+            margin: 0;
+            padding: 0;
+            border: none;
         }
-        @font-face { 
-    font-family: 'helv'; 
-    src: url('HelveticaNowDisplay.otf');
-    } 
-    @font-face {
-        font-family: 'helvAlt';
-        font-feature-settings: "aalt"; 
-        src: url('HelveticaNowDisplay.otf');
-        font-feature-settings: "ss04";
-        unicode-range: U+0052,U+0052 ;}
-    .cover {
-        page: cover;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-image: url('https://source.unsplash.com/random/1600x900') no-repeat center center;
-        background-repeat: no-repeat;
-        background-size: cover;
+
+        @font-face {
+            font-family: 'helv';
+            src: url('HelveticaNowDisplay.otf');
         }
+
+        @font-face {
+            font-family: 'helvAlt';
+            font-feature-settings: "aalt";
+            src: url('HelveticaNowDisplay.otf');
+            font-feature-settings: "ss04";
+            unicode-range: U+0052, U+0052;
+        }
+
+        .cover {
+            page: cover;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://source.unsplash.com/random/1600x900') no-repeat center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
         body {
             /* display: flex; */
             height: 100vh;
             font-weight: 100;
             font-family: helv, helvAlt, Arial, sans-serif;
-            font-size:14px;
+            font-size: 14px;
             font-feature-settings: "ss04";
             font-weight: lighter;
         }
@@ -65,7 +70,9 @@
             position: relative;
         }
 
-        .left, .topdiv, .bottomdiv {
+        .left,
+        .topdiv,
+        .bottomdiv {
             background: url('https://source.unsplash.com/random/800x601') no-repeat center center;
             background-size: cover;
             /* border: blue 1px dashed; */
@@ -73,9 +80,11 @@
             height: 100vh;
             /* adjust as needed */
         }
-        .topdiv, .bottomdiv {
+
+        .topdiv,
+        .bottomdiv {
             height: 50vh;
-            width:100%
+            width: 100%
         }
 
         .leftDoubleImage {
@@ -88,7 +97,7 @@
             background-position: center center;
             background-size: cover;
             /* border: blue 1px solid; */
-            width:auto;
+            width: auto;
         }
 
         .caption {
@@ -96,7 +105,7 @@
             bottom: 4em;
             /* adjust as needed */
             left: 2em;
-            width:calc(100% - 4em - 1em); 
+            width: calc(100% - 4em - 1em);
             /* adjust as needed */
             color: black;
             /* adjust as needed */
@@ -120,22 +129,26 @@
             text-align: left;
             margin-bottom: 20px;
             width: 100%;
-            line-height:0.9em;
+            line-height: 0.9em;
         }
+
         h2 {
-            text-align:left;
+            text-align: left;
             text-transform: uppercase;
             font-weight: bold;
             font-size: 1em;
             width: 100%;
         }
-        h2::before{
+
+        h2::before {
             content: "{";
             line-height: 2em;
         }
-        h2::after{
+
+        h2::after {
             content: "}";
         }
+
         p {
             margin-bottom: 20px;
         }
@@ -144,119 +157,157 @@
             color: #333;
             text-decoration: none;
             font-size: 0.8em;
-            width:100%;
+            width: 100%;
             text-align: left;
             word-wrap: break-word;
         }
-        em{
+
+        em {
             font-size: inherit;
             line-height: 3em;
             width: 100%;
         }
+
         @media (max-width: 600px) {
-            *{            
-            margin: 0;
-            padding: 0;
-            border: none;}
+            * {
+                margin: 0;
+                padding: 0;
+                border: none;
+            }
+
             body {
                 flex-direction: column;
             }
         }
 
-    @media print {
-        @page {
-            size: A4 landscape;
-            margin:1cm;
-            /* marks: crop cross;
-            bleed: 5mm; */
-            @bottom-center {
-    content: counter(page);
-  }
-         }
-         @page cover {
-  margin: 0; /* Use a full size page */
+        @media print {
+            @page {
+                size: A4 landscape;
+                margin: 1cm;
 
-  /* Remove page numbers for the cover */
-  @bottom-center {
-    content: none;
-  }
-}
-        @page :left {
-            margin-left: 1cm;
+                /* marks: crop cross;
+            bleed: 5mm; */
+                @bottom-center {
+                    content: counter(page);
+                }
+            }
+
+            @page cover {
+                margin: 0;
+                /* Use a full size page */
+
+                /* Remove page numbers for the cover */
+                @bottom-center {
+                    content: none;
+                }
+            }
+
+            @page :left {
+                margin-left: 1cm;
+            }
+
+            @page :right {
+                margin-right: 1cm;
+            }
+
+            body {
+                width: 297mm;
+                height: 210mm;
+                margin: 0;
+                padding: 0;
+                page-break-after: always;
+                font-size: 10pt;
+            }
+
+            em {
+                text-align: left;
+            }
+
+            section {
+                min-height: calc(100% - 2cm);
+                height: 100vh;
+                display: flex;
+                page-break-inside: avoid;
+                page-break-after: always !important;
+            }
+
+            h1 {
+                font-size: 5em;
+                line-height: 0.8em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            div {
+                /* max-width:50%; */
+            }
+
+            p {
+                font-size: 0.8em;
+            }
+
+            em {
+                font-size: 10pt;
+                line-height: 3em;
+                width: 100%;
+            }
         }
-        
-        @page :right {
-            margin-right: 1cm;
+
+        caption_url {
+            font-size: 0.8em;
+            color: #333;
+            background-color: white;
+            text-decoration: none;
+            font-size: 0.8em;
+            word-wrap: break-word;
+            width: 80%;
+            text-align: left;
         }
-        body {
-        width: 297mm;
-        height: 210mm;
-        margin: 0;
-        padding: 0;
-        page-break-after: always;  
-        font-size: 10pt;}
-        em {
-        text-align: left;
+
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .left,
+            .topdiv,
+            .bottomdiv {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                background-image: inherit !important;
+                background-size: cover !important;
+            }
         }
-        section {
-            min-height: calc(100% - 2cm);
-            height: 100vh;
-            display: flex;
-            page-break-inside: avoid;
-            page-break-after: always !important;
-        }
-        h1 {
-        font-size: 5em;
-        line-height: 0.8em;
-        }
-        h2 {
-        font-size: 1.5em;
-        }
-        div {
-        /* max-width:50%; */
-        }
-        p {
-        font-size: 0.8em;
-        }
-        em{
-            font-size: 10pt;
-            line-height: 3em;
-            width: 100%;
-        }
-    }
-    caption_url {
-        font-size: 0.8em;
-        color: #333;
-        background-color: white;
-        text-decoration: none;
-        font-size: 0.8em;
-        word-wrap: break-word;
-        width:80%;
-        text-align: left;
-    }
     </style>
 </head>
 
-<body> 
+<body>
     <!-- THIS SECTION IS YOUR COVER PAGE -->
     <section style="background-image: url(jagged_simple.jpg);">
-        <div class="parent" >
+        <div class="parent">
             <div class="">
-                
-            <div class="caption">
-            
-                <a class="caption_url" href="https://karenanndonnachie.github.io/VCA_INTERACTIVEMEDIA/ResearchJournal/researchJournal_template.html">https://karenanndonnachie.github.io/VCA_INTERACTIVEMEDIA/ResearchJournal/researchJournal_template.html</a></div>
+
+                <div class="caption">
+
+                    <a class="caption_url"
+                        href="https://karenanndonnachie.github.io/VCA_INTERACTIVEMEDIA/ResearchJournal/researchJournal_template.html">https://karenanndonnachie.github.io/VCA_INTERACTIVEMEDIA/ResearchJournal/researchJournal_template.html</a>
+                </div>
             </div>
-            </div>
+        </div>
         <div class="right" style="background: none;color:white">
             <div background-color: white;>
-            <h1 style="line-height: 0.9;font-size: 4em;">INTERACTIVE ME DIA RESEARCH J OURNAL, 2025 {WWWAYPOSTS}</h1>
-            <h2>Jay-An CHang # 1463977 | GDES30008 Class 2</h2>
-            <ol>
-                <li>Vera Molnar</li>
-                <li>Lauren Lee McCarthy</li>
-            </ol></p>
-        </div>
+                <h1 style="line-height: 0.9;font-size: 4em;">INTERACTIVE ME DIA RESEARCH J OURNAL, 2025 {WWWAYPOSTS}
+                </h1>
+                <h2>Jay-An CHang # 1463977 | GDES30008 Class 2</h2>
+                <ol>
+                    <li>Vera Molnar</li>
+                    <li>Lauren Lee McCarthy</li>
+                </ol>
+                </p>
+            </div>
         </div>
     </section>
     <script>
@@ -274,7 +325,7 @@
                         var topdiv = $('<div>').addClass('topdiv').css('background-image', 'url(' + row['ImageSrc'] + ')');
                         var bottomdiv = $('<div>').addClass('bottomdiv').css('background-image', 'url(' + row['ImageSrc2'] + ')');
                         var rightDiv = $('<div>').addClass('right');
-                        
+
                         var h1 = $('<h1>').text(row['Title']);
                         var h2 = $('<h2>').text(row['Description']);
                         var p = $('<p>').text(row['BodyText']);
@@ -286,7 +337,7 @@
                         //figure.append(img, figcaption);
                         if (row['Class'] == 'leftDoubleImage') {
                             leftDiv.append(topdiv, bottomdiv);
-                            var captionText = 'Above: '+ row['Caption'] + ' | Below: ' + row['Caption2'];
+                            var captionText = 'Above: ' + row['Caption'] + ' | Below: ' + row['Caption2'];
                             var captionDiv = $('<div>').addClass('caption').text(captionText);
                         } else {
                             leftDiv.css('background-image', 'url(' + row['ImageSrc'] + ')');
@@ -298,9 +349,9 @@
                         var keyWords = row['Keywords'].split(', ');
                         var span = '<p style="width:100%; line-height:2em;">';
                         keyWords.forEach((keyword) => {
-                            span+='#' + keyword + '&nbsp;';
+                            span += '#' + keyword + '&nbsp;';
                         });
-                        span+='</p>';
+                        span += '</p>';
                         rightDiv.append(h2, p, a, span);
                         section.append(parentDiv, rightDiv);
                         $('body').append(section);
@@ -309,7 +360,7 @@
             });
         });
     </script>
-     <!-- YOU CAN `UNCOMMENT` THIS SECTION AND EDIT IT TO TEST ANY STRUCTURAL OR STYLE CHANGES YOU MIGHT WANT TO MAKE
+    <!-- YOU CAN `UNCOMMENT` THIS SECTION AND EDIT IT TO TEST ANY STRUCTURAL OR STYLE CHANGES YOU MIGHT WANT TO MAKE
         YOU COULD ALSO COPY A NUMBER OF THESE SECTIONS IF YOU PREFER TO WORK WITH A STATIC TEMPLATE, JUST CHANGE TH EIMAGES AND TEXTS MANUALLY. -->
     <!-- 
     <section>
