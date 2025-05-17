@@ -265,8 +265,6 @@
             width: 80%;
             text-align: left;
         }
-
-
     </style>
 </head>
 
@@ -279,7 +277,7 @@
                 <div class="caption">
 
                     <a class="caption_url"
-                        href="https://karenanndonnachie.github.io/VCA_INTERACTIVEMEDIA/ResearchJournal/researchJournal_template.html">https://karenanndonnachie.github.io/VCA_INTERACTIVEMEDIA/ResearchJournal/researchJournal_template.html</a>
+                        href="https://jayanchang.github.io/ResearchJournal/">https://jayanchang.github.io/ResearchJournal/</a>
                 </div>
             </div>
         </div>
@@ -308,43 +306,60 @@
                         var section = $('<section>');
                         var parentDiv = $('<div>').addClass('parent');
                         var leftDiv = $('<div>').addClass(row['Class']);
-                        var topdiv = $('<div>').addClass('topdiv').css('background-image', 'url(' + row['ImageSrc'] + ')');
-                        var bottomdiv = $('<div>').addClass('bottomdiv').css('background-image', 'url(' + row['ImageSrc2'] + ')');
                         var rightDiv = $('<div>').addClass('right');
 
-                        var h1 = $('<h1>').text(row['Title']);
-                        var h2 = $('<h2>').text(row['Description']);
-                        var p = $('<p>').text(row['BodyText']);
-                        var a = $('<a>').attr('href', '#').text(row['Link']);
-                        //var figure = $('<figure>');
-                        var img = $('<img>').attr('src', row['ImageSrc']);
-                        var img2 = $('<img>').attr('src', row['ImageSrc2']);
-                        //var figcaption = $('<figcaption>').text(row['Caption'].'\n'.$row['Caption2']);
-                        //figure.append(img, figcaption);
+                        // LEFT SIDE IMAGES (Now with <img> instead of background-image)
                         if (row['Class'] == 'leftDoubleImage') {
-                            leftDiv.append(topdiv, bottomdiv);
+                            // Double image mode (top + bottom images)
+                            var imgTop = $('<img>').attr('src', row['ImageSrc']).css({
+                                'width': '100%',
+                                'height': '50vh',
+                                'object-fit': 'cover'
+                            });
+                            var imgBottom = $('<img>').attr('src', row['ImageSrc2']).css({
+                                'width': '100%',
+                                'height': '50vh',
+                                'object-fit': 'cover'
+                            });
+                            leftDiv.append(imgTop, imgBottom);
+
                             var captionText = 'Above: ' + row['Caption'] + ' | Below: ' + row['Caption2'];
                             var captionDiv = $('<div>').addClass('caption').text(captionText);
                         } else {
-                            leftDiv.css('background-image', 'url(' + row['ImageSrc'] + ')');
-                            leftDiv.css('background-size', 'cover');
+                            // Single image mode
+                            var imgSingle = $('<img>').attr('src', row['ImageSrc']).css({
+                                'width': '100%',
+                                'height': '100%',
+                                'object-fit': 'cover'
+                            });
+                            leftDiv.append(imgSingle);
+
                             var captionDiv = $('<div>').addClass('caption').text(row['Caption']);
                         }
+
                         parentDiv.append(leftDiv, captionDiv);
-                        rightDiv.append(h1);
+
+                        // RIGHT SIDE CONTENT
+                        var h1 = $('<h1>').text(row['Title']);
+                        var h2 = $('<h2>').text(row['Description']);
+                        var p = $('<p>').text(row['BodyText']);
+                        var a = $('<a>').attr('href', row['Link']).text(row['Link']);
+
                         var keyWords = row['Keywords'].split(', ');
-                        var span = '<p style="width:100%; line-height:2em;">';
+                        var span = $('<p>').css({ 'width': '100%', 'line-height': '2em' });
                         keyWords.forEach((keyword) => {
-                            span += '#' + keyword + '&nbsp;';
+                            span.append('#' + keyword + ' ');
                         });
-                        span += '</p>';
-                        rightDiv.append(h2, p, a, span);
+
+                        rightDiv.append(h1, h2, p, a, span);
+
                         section.append(parentDiv, rightDiv);
                         $('body').append(section);
                     });
                 }
             });
         });
+
     </script>
     <!-- YOU CAN `UNCOMMENT` THIS SECTION AND EDIT IT TO TEST ANY STRUCTURAL OR STYLE CHANGES YOU MIGHT WANT TO MAKE
         YOU COULD ALSO COPY A NUMBER OF THESE SECTIONS IF YOU PREFER TO WORK WITH A STATIC TEMPLATE, JUST CHANGE TH EIMAGES AND TEXTS MANUALLY. -->
